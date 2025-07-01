@@ -1,366 +1,1219 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv=Content-Type content="text/html; charset=utf-8">
-<meta name=Generator content="Microsoft Word 15 (filtered)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Aptos;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:8.0pt;
-	margin-left:0cm;
-	line-height:115%;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;}
-.MsoChpDefault
-	{font-size:12.0pt;
-	font-family:"Aptos",sans-serif;}
-.MsoPapDefault
-	{margin-bottom:8.0pt;
-	line-height:115%;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
--->
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Glossary - ADSO Terms</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables and Reset */
+        :root {
+            --primary-color: #1c1c1e;
+            --secondary-color: #2c2c2e;
+            --success-color: #34c759;
+            --warning-color: #ff9500;
+            --danger-color: #ff3b30;
+            --info-color: #5ac8fa;
+            --light-color: #f2f2f7;
+            --text-color: #1c1c1e;
+            --text-secondary: #8e8e93;
+            --border-color: #c6c6c8;
+            --background-color: #ffffff;
+            --card-background: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --border-radius: 16px;
+            --button-radius: 999px;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 14px;
+            animation: fadeInBody 0.6s ease-in-out;
+        }
+
+        @keyframes fadeInBody {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            animation: fadeInContainer 0.8s ease-out;
+        }
+
+        @keyframes fadeInContainer {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 25px 30px;
+            border-bottom: 1px solid rgba(198, 198, 200, 0.3);
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .sena-logo {
+            height: 60px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        .sena-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .header-title {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+        }
+
+        .header-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .header-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .stats-bar {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            border: 1px solid rgba(198, 198, 200, 0.3);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Search and Filter */
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #a8a8aa;
+            box-shadow: 0 4px 16px rgba(155, 156, 157, 0.35);
+            background-color: #ffffff;
+            transform: scale(1.02);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        .filter-select {
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 13px;
+            background: white;
+            min-width: 150px;
+        }
+
+        /* Term Cards Grid */
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .term-card {
+            background: var(--card-background);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(198, 198, 200, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeInCard 0.5s ease-out;
+        }
+
+        @keyframes fadeInCard {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .term-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .term-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .term-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .term-english {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .term-category {
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: var(--button-radius);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .category-programming {
+            background: linear-gradient(135deg, #34c759, #28a745);
+            color: white;
+        }
+
+        .category-development {
+            background: linear-gradient(135deg, #5ac8fa, #007aff);
+            color: white;
+        }
+
+        .category-tools {
+            background: linear-gradient(135deg, #ff9500, #f39c12);
+            color: white;
+        }
+
+        .category-concepts {
+            background: linear-gradient(135deg, #1c1c1e, #2c2c2e);
+            color: white;
+        }
+
+        .term-description {
+            color: var(--text-color);
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .term-media {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(198, 198, 200, 0.3);
+        }
+
+        .term-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid rgba(198, 198, 200, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .term-image:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .term-image::after {
+            content: "🔍";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .term-image:hover::after {
+            opacity: 1;
+        }
+
+        .audio-controls {
+            flex: 1;
+        }
+
+        .audio-player {
+            width: 100%;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        .audio-player::-webkit-media-controls-panel {
+            background-color: var(--light-color);
+            border-radius: 8px;
+        }
+
+        /* Image Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            animation: fadeInModal 0.3s ease-out;
+            overflow: hidden;
+        }
+
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .image-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content-image {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            animation: modalSlideIn 0.4s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            object-fit: contain;
+            background: white;
+            padding: 10px;
+        }
+
+        .modal-info {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 20px 30px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 600px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .modal-description {
+            color: var(--text-color);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            box-shadow: var(--shadow);
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-navigation {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            box-shadow: var(--shadow);
+        }
+
+        .modal-navigation:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        .modal-navigation:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .modal-navigation:disabled:hover {
+            transform: translateY(-50%) scale(1);
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Loading State */
+        .loading-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        .loading-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            border: 3px solid var(--light-color);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* No Results State */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .header-left {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .sena-logo {
+                height: 50px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .header-subtitle {
+                text-align: center;
+            }
+
+            .stats-bar {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                min-width: auto;
+            }
+
+            .terms-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .term-media {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .term-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .modal-content-image {
+                max-width: 95vw;
+                max-height: 95vh;
+                gap: 15px;
+            }
+
+            .modal-image {
+                max-height: 70vh;
+            }
+
+            .modal-info {
+                padding: 15px 20px;
+                margin: 0 10px;
+            }
+
+            .modal-title {
+                font-size: 1.3rem;
+            }
+
+            .modal-subtitle {
+                font-size: 1rem;
+            }
+
+            .modal-close {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .modal-navigation {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .modal-prev {
+                left: 10px;
+            }
+
+            .modal-next {
+                right: 10px;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus states for accessibility */
+        .search-input:focus,
+        .filter-select:focus,
+        .modal-close:focus,
+        .modal-navigation:focus {
+            outline: 2px solid rgba(28, 28, 30, 0.3);
+            outline-offset: 2px;
+        }
+
+        .term-image:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        .sena-logo:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+            border-radius: 8px;
+        }
+    </style>
 </head>
-
-<body lang=ES-CO link="#467886" vlink="#96607D" style='word-wrap:break-word'>
-
-<div class=WordSection1>
-
-<p class=MsoNormal><b><span lang=EN-US>Código fuente - Source Code:</span></b><span
-lang=EN-US> Human-readable instructions written in a programming language. It
-is the base from which programs are built and can be compiled or interpreted to
-create executable software.</span></p>
-<audio controls>
-	<source src="Código fuente - Source Code.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
-
-<p class=MsoNormal><span lang=EN-US><img width=590 height=296
-src="termino%20ADSO.files/image001.png"></span></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Compilador - Compiler: </span></b><span
-lang=EN-US>A tool that translates source code into machine code or bytecode. It
-checks for syntax errors and transforms high-level instructions into a format
-the computer can execut</span></p>
-
-
-<audio controls>
-	<source src="Compilador - Compiler.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><img width=361 height=361 id="Imagen 1"
-src="termino%20ADSO.files/image002.png"></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Depuración - Debugging:</span></b><span
-lang=EN-US> The process of identifying, analyzing, and fixing bugs or errors in
-code. It's essential for ensuring software reliability and is often done using
-specialized tools or IDEs.</span></p>
-<audio controls>
-	<source src="Depuración - Debugging.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><img width=403 height=403 id="Imagen 2"
-src="termino%20ADSO.files/image003.png"></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Variable - Variable:</span></b><span
-lang=EN-US> A named memory location used to store data that can change during
-program execution. Variables are fundamental for logic, flow control, and data
-manipulation.</span></p>
-
-<audio controls>
-	<source src="Variable - Variable.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><img width=347 height=275 id="Imagen 3"
-src="termino%20ADSO.files/image004.png" alt="developer.android.com/co..."></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Función - Function:</span></b><span
-lang=EN-US> A reusable block of code that performs a specific task. Functions
-help break programs into smaller, manageable parts, improving readability,
-reuse, and testing.</span></p>
-<audio controls>
-	<source src="Función - Function.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><img width=455 height=299 id="Imagen 4"
-src="termino%20ADSO.files/image005.jpg" alt="vecteezy.com/vector-art/..."></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Objeto - Object:</span></b><span
-lang=EN-US> An instance of a class that encapsulates data (attributes) and
-behavior (methods). Objects are central to object-oriented programming and
-model real-world entities.</span></p>
-<audio controls>
-	<source src="Objeto - Object.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><img width=456 height=387 id="Imagen 8"
-src="termino%20ADSO.files/image006.jpg"
-alt="Concepto de programación orientada a objetos: ilustración de stock  2365005349 | Shutterstock"></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Clase - Class:</span></b><span
-lang=EN-US> A blueprint for creating objects, defining their structure and
-behavior. Classes support encapsulation, inheritance, and abstraction in
-object-oriented programming.</span></p>
-
-<audio controls>
-	<source src="Clase - Class.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><img width=351 height=351 id="Imagen 10"
-src="termino%20ADSO.files/image007.png" alt="flaticon.com/free-icon/u..."></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Interfaz gráfica - Graphical User
-Interface (GUI):</span></b><span lang=EN-US> Visual components like buttons,
-windows, and icons that allow users to interact with software. It enhances
-usability by providing intuitive controls.</span></p>
-<audio controls>
-	<source src="Interfaz gráfica - Graphical User Interface (GUI).mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-<br>
-<img width=650 height=347 id="Imagen 11" src="termino%20ADSO.files/image008.png" alt="GUI Software">
-
-
-
-<p class=MsoNormal><b><span lang=EN-US>Algoritmo - Algorithm:</span></b><span
-lang=EN-US> A precise sequence of steps to solve a specific problem or perform
-a task. Algorithms are the foundation of programming logic and performance
-optimization.</span></p>
-
-
-<audio controls>
-	<source src="Algoritmo - Algorithm.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><img width=506 height=316 id="Imagen 12"
-src="termino%20ADSO.files/image009.jpg"
-alt="Algoritmos: ¿Qué son y qué función cumplen? | SabDemarco"></p>
-
-<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Estructura de datos - Data Structure:</span></b><span
-lang=EN-US> A specific way to organize, manage, and store data for efficient
-access and modification. Examples include arrays, lists, stacks, and trees.</span></p>
-
-
-<audio controls>
-	<source src="Estructura de datos - Data Structure.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-	</audio>
-	<br>
-	
-	<img width=589 height=349 id="Imagen 13" src="termino%20ADSO.files/image010.png"
-		alt="What is Data Structure and it types? - Software Development - Discussion  Forum | Board Infinity">
-
-<p class=MsoNormal><b><span lang=EN-US>Base de datos - Database:</span></b><span
-lang=EN-US> A structured collection of data, often managed by a DBMS. It allows
-for efficient storage, retrieval, and manipulation of large volumes of
-information.</span></p>
-<audio controls>
-	<source src="Base de datos - Database.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><img width=600 height=337 id="Imagen 15"
-src="termino%20ADSO.files/image011.png"></p>
-
-<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
-
-<p class=MsoNormal><b><span lang=EN-US>API - API (Application Programming
-Interface):</span></b><span lang=EN-US> A set of rules and functions that allow
-different software components to communicate. APIs enable integration between
-systems and abstraction of complex operations.</span></p>
-<audio controls>
-	<source src="API - API (Application Programming Interface).mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-<br>
-<img width=653 height=307 id="Imagen 16" src="termino%20ADSO.files/image012.jpg">
-
-
-<p class=MsoNormal><b><span lang=EN-US>Framework - Framework: </span></b><span
-lang=EN-US>A pre-built structure of tools, libraries, and conventions that
-simplifies software development. Frameworks provide a foundation to build
-scalable and maintainable applications.</span></p>
-<audio controls>
-	<source src="Framework - Framework.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-<br>
-<img width=426 height=252 id="Imagen 19" src="termino%20ADSO.files/image013.jpg">
-
-<p class=MsoNormal><b><span lang=EN-US>Biblioteca - Library:</span></b><span
-lang=EN-US> A collection of reusable code routines and functions that solve
-common problems. Libraries save time by offering tested and optimized
-functionality.</span></p>
-<audio controls>
-	<source src="Biblioteca - Library.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-<br>
-<img width=449 height=449 id="Imagen 20" src="termino%20ADSO.files/image014.png" alt="flaticon.com/free-icon/l...">
-
-<p class=MsoNormal><b><span lang=EN-US>Repositorio - Repository:</span></b><span
-lang=EN-US> A centralized location where code, documentation, and resources are
-stored. Often used with version control systems like Git to manage development
-history.</span></p>
-
-<audio controls>
-	<source src="Repositorio - Repository.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><img width=332 height=332 id="Imagen 21"
-src="termino%20ADSO.files/image015.png" alt="commons.wikimedia.org/wi..."></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Control de versiones - Version Control:</span></b><span
-lang=EN-US> A system that records changes to code over time, allowing
-developers to track revisions, revert changes, and collaborate efficiently.</span></p>
-<audio controls>
-	<source src="Control de versiones - Version Control.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-<br>
-<img width=526 height=340 id="Imagen 22" src="termino%20ADSO.files/image016.png">
-
-<p class=MsoNormal><b><span lang=EN-US>IDE - IDE (Integrated Development
-Environment):</span></b><span lang=EN-US> A software application that provides
-tools like a code editor, debugger, and compiler in one place. It improves
-development speed and code quality.</span></p>
-
-<audio controls>
-	<source src="IDE - IDE (Integrated Development Environment).mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-<br>
-<img width=425 height=327 id="Imagen 23" src="termino%20ADSO.files/image017.jpg">
-
-<p class=MsoNormal><b><span lang=EN-US>Commit - Commit:</span></b><span
-lang=EN-US> An action in version control that saves a snapshot of the current
-code. Each commit includes a message describing the changes and helps track
-development progress.</span></p>
-
-<audio controls>
-	<source src="Commit - Commit.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><span lang=EN-US><img width=367 height=347 id="Imagen 25"
-src="termino%20ADSO.files/image018.jpg"></span></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Pull request - Pull Request:</span></b><span
-lang=EN-US> A method for proposing changes in a codebase, typically reviewed by
-peers before merging. Pull requests help maintain code quality and encourage
-collaboration.</span></p>
-
-<audio controls>
-	<source src="Pull request - Pull Request.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><span lang=EN-US><img width=336 height=336 id="Imagen 27"
-src="termino%20ADSO.files/image019.jpg"></span></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Branch - Branch:</span></b><span
-lang=EN-US> A separate version of the codebase where developers can add
-features or fix bugs without affecting the main code. Branching enables
-parallel development.</span></p>
-
-<audio controls>
-	<source src="Branch - Branch.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><span lang=EN-US><img width=303 height=303 id="Imagen 28"
-src="termino%20ADSO.files/image020.jpg"></span></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Bug - Bug:</span></b><span lang=EN-US> A
-defect or error in software that causes incorrect or unintended behavior. Bugs
-must be identified and fixed during testing or debugging.</span></p>
-
-<audio controls>
-	<source src="Bug - Bug.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-<br>
-
-
-<img width=311 height=311 id="Imagen 30" src="termino%20ADSO.files/image021.jpg">
-
-<p class=MsoNormal><b><span lang=EN-US>Refactorización - Refactoring:</span></b><span
-lang=EN-US> The process of restructuring existing code without changing its
-external behavior. It improves readability, maintainability, and performance.</span></p>
-
-<audio controls>
-	<source src="Refactorización - Refactoring.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><img width=370 height=370 id="Imagen 31"
-src="termino%20ADSO.files/image022.png" alt="flaticon.com/free-icon/r..."></p>
-
-<p class=MsoNormal><b><span lang=EN-US>Testing - Testing:</span></b><span
-lang=EN-US> The process of evaluating software to ensure it meets requirements
-and functions correctly. Includes unit tests, integration tests, and user
-acceptance tests.</span></p>
-
-<audio controls>
-	<source src="Testing - Testing.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-
-<p class=MsoNormal><img width=359 height=359 id="Imagen 32"
-src="termino%20ADSO.files/image023.png" alt="flaticon.com/free-icon/s..."></p>
-
-<p class=MsoNormal><b><span lang=EN-US>CI/CD - CI/CD (Continuous
-Integration/Continuous Deployment):</span></b><span lang=EN-US> A DevOps
-practice that automates code integration, testing, and deployment. It helps
-detect errors early and deliver updates faster.</span></p>
-<audio controls>
-	<source src="CI-CD - CI-CD (Continuous Integration-Continuous Deployment).mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-<br>
-<img width=419 height=346 id="Imagen 33" src="termino%20ADSO.files/image024.jpg" alt="vecteezy.com/vector-art/...">
-
-<p class=MsoNormal><b><span lang=EN-US>Documentación - Documentation:</span></b><span
-lang=EN-US> Written descriptions that explain code usage, structure, and
-design. It helps developers understand, use, and maintain the software over
-time.</span></p>
-<audio controls>
-	<source src="Documentación - Documentation.mp3" type="audio/mpeg">
-	Tu navegador no soporta audio.
-</audio>
-<br>
-<img width=589 height=589 id="Imagen 34" src="termino%20ADSO.files/image025.jpg" alt="vecteezy.com/vector-art/...">
-
-<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
-
-</div>
-
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <img src="logo-sena-verde-complementario-svg-2022.svg" 
+                     alt="SENA Logo" 
+                     class="sena-logo"
+                     title="Servicio Nacional de Aprendizaje - SENA">
+                <div class="header-title">
+                    <h1>
+                        <div class="header-icon">📚</div>
+                        Programming Glossary - ADSO
+                    </h1>
+                    <p class="header-subtitle">Servicio Nacional de Aprendizaje - SENA</p>
+                </div>
+            </div>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalTerms">25</span>
+                    <span class="stat-label">Total Terms</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="visibleTerms">25</span>
+                    <span class="stat-label">Showing</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Controls -->
+        <div class="controls">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search terms in English or Spanish...">
+            </div>
+            <select class="filter-select" id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="programming">Programming</option>
+                <option value="development">Development</option>
+                <option value="tools">Tools</option>
+                <option value="concepts">Concepts</option>
+            </select>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading-state" id="loadingState" style="display: none;">
+            <div class="loading-icon"></div>
+            Loading terms...
+        </div>
+
+        <!-- No Results State -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-icon">🔍</div>
+            <h3>No terms found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+        </div>
+
+        <!-- Terms Grid -->
+        <div class="terms-grid" id="termsGrid">
+            <!-- Terms will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="image-modal" id="imageModal">
+        <button class="modal-close" id="modalClose" aria-label="Close modal">×</button>
+        <button class="modal-navigation modal-prev" id="modalPrev" aria-label="Previous image">‹</button>
+        <button class="modal-navigation modal-next" id="modalNext" aria-label="Next image">›</button>
+        <div class="modal-content-image">
+            <img class="modal-image" id="modalImage" alt="">
+            <div class="modal-info">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-subtitle" id="modalSubtitle"></p>
+                <p class="modal-description" id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Programming terms data with exact file names from original HTML
+        const programmingTerms = [
+            {
+                spanish: "Código fuente",
+                english: "Source Code",
+                description: "Human-readable instructions written in a programming language. It is the base from which programs are built and can be compiled or interpreted to create executable software.",
+                category: "programming",
+                image: "termino ADSO.files/image001.png",
+                audio: "Código fuente - Source Code.mp3"
+            },
+            {
+                spanish: "Compilador",
+                english: "Compiler",
+                description: "A tool that translates source code into machine code or bytecode. It checks for syntax errors and transforms high-level instructions into a format the computer can execute.",
+                category: "tools",
+                image: "termino ADSO.files/image002.png",
+                audio: "Compilador - Compiler.mp3"
+            },
+            {
+                spanish: "Depuración",
+                english: "Debugging",
+                description: "The process of identifying, analyzing, and fixing bugs or errors in code. It's essential for ensuring software reliability and is often done using specialized tools or IDEs.",
+                category: "development",
+                image: "termino ADSO.files/image003.png",
+                audio: "Depuración - Debugging.mp3"
+            },
+            {
+                spanish: "Variable",
+                english: "Variable",
+                description: "A named memory location used to store data that can change during program execution. Variables are fundamental for logic, flow control, and data manipulation.",
+                category: "programming",
+                image: "termino ADSO.files/image004.png",
+                audio: "Variable - Variable.mp3"
+            },
+            {
+                spanish: "Función",
+                english: "Function",
+                description: "A reusable block of code that performs a specific task. Functions help break programs into smaller, manageable parts, improving readability, reuse, and testing.",
+                category: "programming",
+                image: "termino ADSO.files/image005.jpg",
+                audio: "Función - Function.mp3"
+            },
+            {
+                spanish: "Objeto",
+                english: "Object",
+                description: "An instance of a class that encapsulates data (attributes) and behavior (methods). Objects are central to object-oriented programming and model real-world entities.",
+                category: "concepts",
+                image: "termino ADSO.files/image006.jpg",
+                audio: "Objeto - Object.mp3"
+            },
+            {
+                spanish: "Clase",
+                english: "Class",
+                description: "A blueprint for creating objects, defining their structure and behavior. Classes support encapsulation, inheritance, and abstraction in object-oriented programming.",
+                category: "concepts",
+                image: "termino ADSO.files/image007.png",
+                audio: "Clase - Class.mp3"
+            },
+            {
+                spanish: "Interfaz gráfica",
+                english: "Graphical User Interface (GUI)",
+                description: "Visual components like buttons, windows, and icons that allow users to interact with software. It enhances usability by providing intuitive controls.",
+                category: "development",
+                image: "termino ADSO.files/image008.png",
+                audio: "Interfaz gráfica - Graphical User Interface (GUI).mp3"
+            },
+            {
+                spanish: "Algoritmo",
+                english: "Algorithm",
+                description: "A precise sequence of steps to solve a specific problem or perform a task. Algorithms are the foundation of programming logic and performance optimization.",
+                category: "concepts",
+                image: "termino ADSO.files/image009.jpg",
+                audio: "Algoritmo - Algorithm.mp3"
+            },
+            {
+                spanish: "Estructura de datos",
+                english: "Data Structure",
+                description: "A specific way to organize, manage, and store data for efficient access and modification. Examples include arrays, lists, stacks, and trees.",
+                category: "concepts",
+                image: "termino ADSO.files/image010.png",
+                audio: "Estructura de datos - Data Structure.mp3"
+            },
+            {
+                spanish: "Base de datos",
+                english: "Database",
+                description: "A structured collection of data, often managed by a DBMS. It allows for efficient storage, retrieval, and manipulation of large volumes of information.",
+                category: "tools",
+                image: "termino ADSO.files/image011.png",
+                audio: "Base de datos - Database.mp3"
+            },
+            {
+                spanish: "API",
+                english: "API (Application Programming Interface)",
+                description: "A set of rules and functions that allow different software components to communicate. APIs enable integration between systems and abstraction of complex operations.",
+                category: "development",
+                image: "termino ADSO.files/image012.jpg",
+                audio: "API - API (Application Programming Interface).mp3"
+            },
+            {
+                spanish: "Framework",
+                english: "Framework",
+                description: "A pre-built structure of tools, libraries, and conventions that simplifies software development. Frameworks provide a foundation to build scalable and maintainable applications.",
+                category: "tools",
+                image: "termino ADSO.files/image013.jpg",
+                audio: "Framework - Framework.mp3"
+            },
+            {
+                spanish: "Biblioteca",
+                english: "Library",
+                description: "A collection of reusable code routines and functions that solve common problems. Libraries save time by offering tested and optimized functionality.",
+                category: "tools",
+                image: "termino ADSO.files/image014.png",
+                audio: "Biblioteca - Library.mp3"
+            },
+            {
+                spanish: "Repositorio",
+                english: "Repository",
+                description: "A centralized location where code, documentation, and resources are stored. Often used with version control systems like Git to manage development history.",
+                category: "tools",
+                image: "termino ADSO.files/image015.png",
+                audio: "Repositorio - Repository.mp3"
+            },
+            {
+                spanish: "Control de versiones",
+                english: "Version Control",
+                description: "A system that records changes to code over time, allowing developers to track revisions, revert changes, and collaborate efficiently.",
+                category: "tools",
+                image: "termino ADSO.files/image016.png",
+                audio: "Control de versiones - Version Control.mp3"
+            },
+            {
+                spanish: "IDE",
+                english: "IDE (Integrated Development Environment)",
+                description: "A software application that provides tools like a code editor, debugger, and compiler in one place. It improves development speed and code quality.",
+                category: "tools",
+                image: "termino ADSO.files/image017.jpg",
+                audio: "IDE - IDE (Integrated Development Environment).mp3"
+            },
+            {
+                spanish: "Commit",
+                english: "Commit",
+                description: "An action in version control that saves a snapshot of the current code. Each commit includes a message describing the changes and helps track development progress.",
+                category: "development",
+                image: "termino ADSO.files/image018.jpg",
+                audio: "Commit - Commit.mp3"
+            },
+            {
+                spanish: "Pull request",
+                english: "Pull Request",
+                description: "A method for proposing changes in a codebase, typically reviewed by peers before merging. Pull requests help maintain code quality and encourage collaboration.",
+                category: "development",
+                image: "termino ADSO.files/image019.jpg",
+                audio: "Pull request - Pull Request.mp3"
+            },
+            {
+                spanish: "Branch",
+                english: "Branch",
+                description: "A separate version of the codebase where developers can add features or fix bugs without affecting the main code. Branching enables parallel development.",
+                category: "development",
+                image: "termino ADSO.files/image020.jpg",
+                audio: "Branch - Branch.mp3"
+            },
+            {
+                spanish: "Bug",
+                english: "Bug",
+                description: "A defect or error in software that causes incorrect or unintended behavior. Bugs must be identified and fixed during testing or debugging.",
+                category: "development",
+                image: "termino ADSO.files/image021.jpg",
+                audio: "Bug - Bug.mp3"
+            },
+            {
+                spanish: "Refactorización",
+                english: "Refactoring",
+                description: "The process of restructuring existing code without changing its external behavior. It improves readability, maintainability, and performance.",
+                category: "development",
+                image: "termino ADSO.files/image022.png",
+                audio: "Refactorización - Refactoring.mp3"
+            },
+            {
+                spanish: "Testing",
+                english: "Testing",
+                description: "The process of evaluating software to ensure it meets requirements and functions correctly. Includes unit tests, integration tests, and user acceptance tests.",
+                category: "development",
+                image: "termino ADSO.files/image023.png",
+                audio: "Testing - Testing.mp3"
+            },
+            {
+                spanish: "CI/CD",
+                english: "CI/CD (Continuous Integration/Continuous Deployment)",
+                description: "A DevOps practice that automates code integration, testing, and deployment. It helps detect errors early and deliver updates faster.",
+                category: "development",
+                image: "termino ADSO.files/image024.jpg",
+                audio: "CI-CD - CI-CD (Continuous Integration-Continuous Deployment).mp3"
+            },
+            {
+                spanish: "Documentación",
+                english: "Documentation",
+                description: "Written descriptions that explain code usage, structure, and design. It helps developers understand, use, and maintain the software over time.",
+                category: "development",
+                image: "termino ADSO.files/image025.jpg",
+                audio: "Documentación - Documentation.mp3"
+            }
+        ];
+
+        // DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const termsGrid = document.getElementById('termsGrid');
+        const loadingState = document.getElementById('loadingState');
+        const noResults = document.getElementById('noResults');
+        const totalTermsSpan = document.getElementById('totalTerms');
+        const visibleTermsSpan = document.getElementById('visibleTerms');
+
+        // Modal elements
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalSubtitle = document.getElementById('modalSubtitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalClose = document.getElementById('modalClose');
+        const modalPrev = document.getElementById('modalPrev');
+        const modalNext = document.getElementById('modalNext');
+
+        // State
+        let filteredTerms = [...programmingTerms];
+        let currentImageIndex = 0;
+
+        // Initialize
+        function init() {
+            totalTermsSpan.textContent = programmingTerms.length;
+            renderTerms(programmingTerms);
+            setupEventListeners();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            searchInput.addEventListener('input', debounce(handleSearch, 300));
+            categoryFilter.addEventListener('change', handleFilter);
+            
+            // Modal event listeners
+            modalClose.addEventListener('click', closeModal);
+            modalPrev.addEventListener('click', showPreviousImage);
+            modalNext.addEventListener('click', showNextImage);
+            
+            // Close modal on background click
+            imageModal.addEventListener('click', (e) => {
+                if (e.target === imageModal) {
+                    closeModal();
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', handleKeydown);
+        }
+
+        // Handle keyboard navigation
+        function handleKeydown(e) {
+            if (!imageModal.classList.contains('show')) return;
+            
+            switch(e.key) {
+                case 'Escape':
+                    closeModal();
+                    break;
+                case 'ArrowLeft':
+                    showPreviousImage();
+                    break;
+                case 'ArrowRight':
+                    showNextImage();
+                    break;
+            }
+        }
+
+        // Open image modal
+        function openImageModal(termIndex) {
+            const term = filteredTerms[termIndex];
+            currentImageIndex = termIndex;
+            
+            modalImage.src = term.image;
+            modalImage.alt = term.english;
+            modalTitle.textContent = term.spanish;
+            modalSubtitle.textContent = term.english;
+            modalDescription.textContent = term.description;
+            
+            // Update navigation buttons
+            modalPrev.disabled = termIndex === 0;
+            modalNext.disabled = termIndex === filteredTerms.length - 1;
+            
+            imageModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            imageModal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Show previous image
+        function showPreviousImage() {
+            if (currentImageIndex > 0) {
+                openImageModal(currentImageIndex - 1);
+            }
+        }
+
+        // Show next image
+        function showNextImage() {
+            if (currentImageIndex < filteredTerms.length - 1) {
+                openImageModal(currentImageIndex + 1);
+            }
+        }
+
+        // Debounce function
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Handle search
+        function handleSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const category = categoryFilter.value;
+            
+            showLoading();
+            
+            setTimeout(() => {
+                filteredTerms = programmingTerms.filter(term => {
+                    const matchesSearch = !searchTerm || 
+                        term.spanish.toLowerCase().includes(searchTerm) ||
+                        term.english.toLowerCase().includes(searchTerm) ||
+                        term.description.toLowerCase().includes(searchTerm);
+                    
+                    const matchesCategory = !category || term.category === category;
+                    
+                    return matchesSearch && matchesCategory;
+                });
+                
+                hideLoading();
+                renderTerms(filteredTerms);
+            }, 500);
+        }
+
+        // Handle filter
+        function handleFilter() {
+            handleSearch();
+        }
+
+        // Show loading state
+        function showLoading() {
+            loadingState.style.display = 'flex';
+            termsGrid.style.display = 'none';
+            noResults.style.display = 'none';
+        }
+
+        // Hide loading state
+        function hideLoading() {
+            loadingState.style.display = 'none';
+        }
+
+        // Render terms
+        function renderTerms(terms) {
+            visibleTermsSpan.textContent = terms.length;
+            
+            if (terms.length === 0) {
+                termsGrid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            termsGrid.style.display = 'grid';
+            
+            termsGrid.innerHTML = terms.map((term, index) => `
+                <div class="term-card">
+                    <div class="term-header">
+                        <div>
+                            <h3 class="term-title">${term.spanish}</h3>
+                            <p class="term-english">${term.english}</p>
+                        </div>
+                        <span class="term-category category-${term.category}">${term.category}</span>
+                    </div>
+                    
+                    <p class="term-description">${term.description}</p>
+                    
+                    <div class="term-media">
+                        <img src="${term.image}" 
+                             alt="${term.english}" 
+                             class="term-image" 
+                             loading="lazy"
+                             onclick="openImageModal(${index})"
+                             tabindex="0"
+                             role="button"
+                             aria-label="Click to view ${term.english} image in full size">
+                        <div class="audio-controls">
+                            <audio controls class="audio-player">
+                                <source src="${term.audio}" type="audio/mpeg">
+                                Tu navegador no soporta audio.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize the application
+        init();
+    </script>
 </body>
-
 </html>
